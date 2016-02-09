@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Library_Management {
+    public partial class AdminPanel : Form {
+        Login loginpage;
+        bool adminprivilege;
+        DatabaseAdapter databaseadapter = new DatabaseAdapter();
+        public AdminPanel() {
+            InitializeComponent();
+        }
+        public AdminPanel(Login loginpage, string email) {
+            InitializeComponent();
+            this.loginpage = loginpage;
+            this.loginpage.Visible = false;
+            adminprivilege = databaseadapter.isAdmin(email);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e) {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            if (!adminprivilege) {
+                MessageBox.Show("Sorry! You cannot add new librarian account!");
+            } else {
+                AddLibrarian addlibrarian = new AddLibrarian();
+                addlibrarian.ShowDialog();
+            }
+        }
+    }
+}
