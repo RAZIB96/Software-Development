@@ -41,7 +41,7 @@
             this.buttonAddLibrarian.TabIndex = 0;
             this.buttonAddLibrarian.Text = "Add Librarian";
             this.buttonAddLibrarian.UseVisualStyleBackColor = true;
-            this.buttonAddLibrarian.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddLibrarian.Click += new System.EventHandler(this.buttonAddLibrarian_Click);
             // 
             // buttonAddMember
             // 
@@ -51,6 +51,7 @@
             this.buttonAddMember.TabIndex = 1;
             this.buttonAddMember.Text = "Add Member";
             this.buttonAddMember.UseVisualStyleBackColor = true;
+            this.buttonAddMember.Click += new System.EventHandler(this.buttonAddMember_Click);
             // 
             // buttonAddBook
             // 

@@ -13,11 +13,14 @@ namespace Library_Management {
         Login loginpage;
         bool adminprivilege;
         DatabaseAdapter databaseadapter = new DatabaseAdapter();
+
         public AdminPanel() {
             InitializeComponent();
         }
+
         public AdminPanel(Login loginpage, string email) {
             InitializeComponent();
+            this.Show();
             this.loginpage = loginpage;
             this.loginpage.Visible = false;
             adminprivilege = databaseadapter.isAdmin(email);
@@ -27,13 +30,18 @@ namespace Library_Management {
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void buttonAddLibrarian_Click(object sender, EventArgs e) {
             if (!adminprivilege) {
                 MessageBox.Show("Sorry! You cannot add new librarian account!");
             } else {
                 AddLibrarian addlibrarian = new AddLibrarian();
                 addlibrarian.ShowDialog();
             }
+        }
+
+        private void buttonAddMember_Click(object sender, EventArgs e) {
+            AddMember addmember = new AddMember();
+            addmember.ShowDialog();
         }
     }
 }

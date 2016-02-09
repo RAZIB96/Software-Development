@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 519);
+            this.ClientSize = new System.Drawing.Size(496, 473);
             this.Controls.Add(this.buttonRegister);
             this.Controls.Add(this.radioButtonAdmin);
             this.Controls.Add(this.textBoxPassword);

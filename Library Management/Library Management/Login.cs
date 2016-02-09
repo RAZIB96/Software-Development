@@ -34,7 +34,6 @@ namespace Library_Management
             if (message == "Success") {
                 MessageBox.Show("Login Successful! Welcome!");
                 AdminPanel adminpanel = new AdminPanel(this, email);
-                adminpanel.Show();
             } else if (message == "Incorrect Password") {
                 MessageBox.Show("Incorrect Password. Try Again!");
             } else {

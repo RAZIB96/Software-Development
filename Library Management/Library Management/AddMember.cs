@@ -11,26 +11,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Library_Management {
-    public partial class AddLibrarian : Form {
+    public partial class AddMember : Form {
         Regex regexalpha = new Regex(@"[A-Za-z ]");
         Regex regexnumeric = new Regex(@"[0-9]");
-        DatabaseAdapter databaseadapter = new DatabaseAdapter ();
-
-        public AddLibrarian() {
+        DatabaseAdapter databaseadapter = new DatabaseAdapter();
+        public AddMember() {
             InitializeComponent();
-            textBoxPassword.PasswordChar = '*';
-            textBoxConfirmPass.PasswordChar = '*';
         }
 
-        private void label4_Click(object sender, EventArgs e) {
-
-        }
-
-        bool isValidEmail (string email) {
+        bool isValidEmail(string email) {
             try {
                 var test = new MailAddress(email);
                 return true;
-            } catch (FormatException ex) {
+            }
+            catch (FormatException ex) {
                 return false;
             }
         }
@@ -49,45 +43,32 @@ namespace Library_Management {
                 message += "Contact Field Empty\n";
             } else if (contact.Length != 11) {
                 message += "Invalid Mobile Number.\n";
-            } else if (databaseadapter.duplicateContact (contact)) {
+            } else if (databaseadapter.duplicateContact(contact)) {
                 message += "Contact allready exists. Try another.\n";
             }
             return message;
         }
 
-        string checkValidPassword(string password, string confirmpass, string message) {
-            if (password.Length == 0) {
-                message += "Password Field Empty\n";
-            } else if (password.Length < 6 || password.Length > 16) {
-                message += "Password length must be between 6 and 16 characters.\n";
-            } else if (confirmpass.Length == 0) {
-                message += "Password Confirmation Field Empty\n";
-            } else if (confirmpass.Length < 6 || confirmpass.Length > 16) {
-                message += "Password length must be between 6 and 16 characters.\n";
-            } else if (!password.Equals(confirmpass)) {
-                message += "Passwords do not match.\n";
-            }
-            return message;
+        string readerClassDetect(int age) {
+            if (age < 18) return "minor";
+            return "adult";
         }
 
         private void buttonRegister_Click(object sender, EventArgs e) {
             string name = textBoxName.Text;
             int age = Convert.ToInt32(textBoxAge.Text);
             string email = textBoxEmail.Text;
-            string contact = textBoxContact.Text;
-            string password = textBoxPassword.Text;
-            string confirmpass = textBoxConfirmPass.Text;
-            bool adminprivilege = radioButtonAdmin.Checked;
+            string contact = textBoxContact.Text;            
             string message = "";
 
             message = checkValidEmail(email, message);
             message = checkValidContact(contact, message);
-            message = checkValidPassword(password, confirmpass, message);
 
             if (message.Length > 0) {
                 MessageBox.Show(message);
             } else {
-                databaseadapter.addLibrarian(name, age, email, contact, password, adminprivilege);
+                string readercatagory = readerClassDetect(age);
+                databaseadapter.addMember(name, age, email, contact, readercatagory);
                 this.Close();
             }
         }

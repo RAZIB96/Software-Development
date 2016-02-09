@@ -9,3 +9,13 @@ E:\Software Development Project\3.2 C#\Library Management\Library Management\obj
 E:\Software Development Project\3.2 C#\Library Management\Library Management\obj\Debug\Library Management.pdb
 E:\Software Development Project\3.2 C#\Library Management\Library Management\obj\Debug\Library Management.csprojResolveAssemblyReference.cache
 E:\Software Development Project\3.2 C#\Library Management\Library Management\obj\Debug\Library_Management.AddLibrarian.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\bin\Debug\Library Management.exe.config
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\bin\Debug\Library Management.exe
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\bin\Debug\Library Management.pdb
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.AddLibrarian.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.AdminPanel.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.Login.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.Properties.Resources.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.csproj.GenerateResource.Cache
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.exe
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.pdb
