@@ -123,7 +123,7 @@
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.labelName);
             this.Name = "AddMember";
-            this.Text = "AddMember";
+            this.Text = "Add Member";
             this.ResumeLayout(false);
             this.PerformLayout();
 

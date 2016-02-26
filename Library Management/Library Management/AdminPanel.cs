@@ -43,5 +43,25 @@ namespace Library_Management {
             AddMember addmember = new AddMember();
             addmember.ShowDialog();
         }
+
+        private void buttonMemberList_Click(object sender, EventArgs e) {
+            MemberList memberlist = new MemberList();
+            memberlist.ShowDialog();
+        }
+
+        private void buttonLibrarianList_Click(object sender, EventArgs e) {
+            LibrarianList librarianlist = new LibrarianList();
+            librarianlist.ShowDialog();
+        }
+
+        private void buttonViewBooks_Click(object sender, EventArgs e) {
+            BookList booklist = new BookList();
+            booklist.ShowDialog();
+        }
+
+        private void buttonAddBook_Click(object sender, EventArgs e) {
+            AddBook addbook = new AddBook();
+            addbook.ShowDialog();
+        }
     }
 }

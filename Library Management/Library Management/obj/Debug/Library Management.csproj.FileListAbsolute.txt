@@ -19,3 +19,9 @@ E:\Programming\GitHub\Software-Development\Library Management\Library Management
 E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.csproj.GenerateResource.Cache
 E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.exe
 E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.pdb
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library Management.csprojResolveAssemblyReference.cache
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.AddMember.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.MemberList.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.LibrarianList.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.AddBook.resources
+E:\Programming\GitHub\Software-Development\Library Management\Library Management\obj\Debug\Library_Management.bookList.resources

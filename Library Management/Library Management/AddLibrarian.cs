@@ -87,7 +87,7 @@ namespace Library_Management {
             if (message.Length > 0) {
                 MessageBox.Show(message);
             } else {
-                databaseadapter.addLibrarian(name, age, email, contact, password, adminprivilege);
+                databaseadapter.setLibrarian(name, age, email, contact, password, adminprivilege);
                 this.Close();
             }
         }

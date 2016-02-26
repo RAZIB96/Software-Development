@@ -68,7 +68,7 @@ namespace Library_Management {
                 MessageBox.Show(message);
             } else {
                 string readercatagory = readerClassDetect(age);
-                databaseadapter.addMember(name, age, email, contact, readercatagory);
+                databaseadapter.setMember(name, age, email, contact, readercatagory);
                 this.Close();
             }
         }

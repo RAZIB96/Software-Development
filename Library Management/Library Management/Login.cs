@@ -44,5 +44,9 @@ namespace Library_Management
         private void Login_Load(object sender, EventArgs e) {
 
         }
+
+        private void textLibrarianEmail_TextChanged(object sender, EventArgs e) {
+
+        }
     }
 }

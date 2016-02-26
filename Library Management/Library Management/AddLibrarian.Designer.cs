@@ -180,7 +180,7 @@
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.labelName);
             this.Name = "AddLibrarian";
-            this.Text = "AddLibrarian";
+            this.Text = "Add Librarian";
             this.ResumeLayout(false);
             this.PerformLayout();
 

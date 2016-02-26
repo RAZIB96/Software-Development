@@ -52,6 +52,7 @@
             this.textLibrarianEmail.Name = "textLibrarianEmail";
             this.textLibrarianEmail.Size = new System.Drawing.Size(277, 20);
             this.textLibrarianEmail.TabIndex = 1;
+            this.textLibrarianEmail.TextChanged += new System.EventHandler(this.textLibrarianEmail_TextChanged);
             // 
             // textPassword
             // 

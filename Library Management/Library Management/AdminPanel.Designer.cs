@@ -29,7 +29,7 @@
             this.buttonLog = new System.Windows.Forms.Button();
             this.buttonLibrarianList = new System.Windows.Forms.Button();
             this.buttonIssueReturnBook = new System.Windows.Forms.Button();
-            this.buttonSearchBook = new System.Windows.Forms.Button();
+            this.buttonViewBooks = new System.Windows.Forms.Button();
             this.buttonMemberList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.buttonAddBook.TabIndex = 2;
             this.buttonAddBook.Text = "Add Book";
             this.buttonAddBook.UseVisualStyleBackColor = true;
+            this.buttonAddBook.Click += new System.EventHandler(this.buttonAddBook_Click);
             // 
             // buttonLog
             // 
@@ -79,6 +80,7 @@
             this.buttonLibrarianList.TabIndex = 4;
             this.buttonLibrarianList.Text = "Librarian List";
             this.buttonLibrarianList.UseVisualStyleBackColor = true;
+            this.buttonLibrarianList.Click += new System.EventHandler(this.buttonLibrarianList_Click);
             // 
             // buttonIssueReturnBook
             // 
@@ -89,14 +91,15 @@
             this.buttonIssueReturnBook.Text = "Issue/Return Book";
             this.buttonIssueReturnBook.UseVisualStyleBackColor = true;
             // 
-            // buttonSearchBook
+            // buttonViewBooks
             // 
-            this.buttonSearchBook.Location = new System.Drawing.Point(644, 402);
-            this.buttonSearchBook.Name = "buttonSearchBook";
-            this.buttonSearchBook.Size = new System.Drawing.Size(100, 50);
-            this.buttonSearchBook.TabIndex = 6;
-            this.buttonSearchBook.Text = "Search Book";
-            this.buttonSearchBook.UseVisualStyleBackColor = true;
+            this.buttonViewBooks.Location = new System.Drawing.Point(644, 402);
+            this.buttonViewBooks.Name = "buttonViewBooks";
+            this.buttonViewBooks.Size = new System.Drawing.Size(100, 50);
+            this.buttonViewBooks.TabIndex = 6;
+            this.buttonViewBooks.Text = "View Books";
+            this.buttonViewBooks.UseVisualStyleBackColor = true;
+            this.buttonViewBooks.Click += new System.EventHandler(this.buttonViewBooks_Click);
             // 
             // buttonMemberList
             // 
@@ -106,6 +109,7 @@
             this.buttonMemberList.TabIndex = 7;
             this.buttonMemberList.Text = "Member List";
             this.buttonMemberList.UseVisualStyleBackColor = true;
+            this.buttonMemberList.Click += new System.EventHandler(this.buttonMemberList_Click);
             // 
             // AdminPanel
             // 
@@ -114,7 +118,7 @@
             this.BackgroundImage = global::Library_Management.Properties.Resources.adminpanelbg;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.buttonMemberList);
-            this.Controls.Add(this.buttonSearchBook);
+            this.Controls.Add(this.buttonViewBooks);
             this.Controls.Add(this.buttonIssueReturnBook);
             this.Controls.Add(this.buttonLibrarianList);
             this.Controls.Add(this.buttonLog);
@@ -135,7 +139,7 @@
         private System.Windows.Forms.Button buttonLog;
         private System.Windows.Forms.Button buttonLibrarianList;
         private System.Windows.Forms.Button buttonIssueReturnBook;
-        private System.Windows.Forms.Button buttonSearchBook;
+        private System.Windows.Forms.Button buttonViewBooks;
         private System.Windows.Forms.Button buttonMemberList;
     }
 }

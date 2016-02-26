@@ -15,7 +15,7 @@ namespace Library_Management
         SqlConnection connection;
 
         public DatabaseAdapter () {
-            connectionString = @"Data Source=techboy\SQLExpress;Initial Catalog=Library;Integrated Security=True;Pooling=False";
+            connectionString = @"Data Source=techboy\SQLExpress;Initial Catalog=Library;Integrated Security=True;Pooling=False;MultipleActiveResultSets=True;";
             connection = new SqlConnection (connectionString);
         }
 
@@ -28,7 +28,7 @@ namespace Library_Management
             try {
                 connection.Open ();
                 SqlDataReader sqldatareader = sqlcommand.ExecuteReader();
-                if (sqldatareader.HasRows) {
+                if (sqldatareader.Read()) {
                     if (sqldatareader ["password"].ToString() != password) message += "Incorrect Password";
                     else message += "Success";
                 } else {
@@ -53,7 +53,7 @@ namespace Library_Management
             try {
                 connection.Open();
                 SqlDataReader sqldatareader = sqlcommand.ExecuteReader();
-                if (sqldatareader.HasRows) {
+                if (sqldatareader.Read()) {
                     isadmin = (bool) sqldatareader["admin"];
                 }
             } catch (SqlException se) {
@@ -115,7 +115,7 @@ namespace Library_Management
             return duplicate;
         }
 
-        public void addLibrarian(string name, int age, string email, string contact, string password, bool adminprivilege) {
+        public void setLibrarian(string name, int age, string email, string contact, string password, bool adminprivilege) {
             string query = @"INSERT INTO Librarian (full_name, age, contact, email, password, admin)";
             query += "VALUES (@name, @age, @contact, @email, @password, @adminprivilege)";
             SqlCommand sqlcommand = new SqlCommand(query, connection);
@@ -139,9 +139,116 @@ namespace Library_Management
             }
         }
 
-        public void addMember(string name, int age, string email, string contact, string readercatagory) {
+        public DataTable getLibrarian() {
+            string query = @"SELECT * FROM Librarian";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+            DataTable datatable = new DataTable();
+            try {
+                connection.Open();
+                SqlDataAdapter sqldataadapter = new SqlDataAdapter(sqlcommand);
+                sqldataadapter.Fill(datatable);
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+
+            return datatable;
+        }
+
+        
+        public void setBooks(string bookname, string author, string publisher, int quantity, int price, string bookclass) {
+            string query = @"INSERT INTO Books (book_name, author, publisher, price, quantity, class)";
+            query += "VALUES (@bookname, @author, @publisher, @price, @quantity, @bookclass)";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+
+            sqlcommand.Parameters.AddWithValue("@bookname", bookname);
+            sqlcommand.Parameters.AddWithValue("@author", author);
+            sqlcommand.Parameters.AddWithValue("@publisher", publisher);
+            sqlcommand.Parameters.AddWithValue("@price", price);
+            sqlcommand.Parameters.AddWithValue("@quantity", quantity);
+            sqlcommand.Parameters.AddWithValue("@bookclass", bookclass);
+
+            try {
+                connection.Open();
+                int rowseffected = sqlcommand.ExecuteNonQuery();
+                if (rowseffected > 0) MessageBox.Show("Success");
+                else MessageBox.Show("Failed");
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
+        public DataTable getBooks() {
+            string query = @"SELECT * FROM Books";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+            DataTable datatable = new DataTable();
+            try {
+                connection.Open();
+                SqlDataAdapter sqldataadapter = new SqlDataAdapter(sqlcommand);
+                sqldataadapter.Fill(datatable);
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+
+            return datatable;
+        }
+
+        public void updateBook(int id, string name, string author, string publisher, int price, int quantity, string readerclass) {
+            string query = @"UPDATE Books SET book_name = @name, author = @author, publisher = @publisher, price = @price, quantity = @quantity, class = @readerclass WHERE book_id = @id";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+
+            sqlcommand.Parameters.AddWithValue("@id", id);
+            sqlcommand.Parameters.AddWithValue("@name", name);
+            sqlcommand.Parameters.AddWithValue("@author", author);
+            sqlcommand.Parameters.AddWithValue("@publisher", publisher);
+            sqlcommand.Parameters.AddWithValue("@price", price);
+            sqlcommand.Parameters.AddWithValue("@quantity", quantity);
+            sqlcommand.Parameters.AddWithValue("@readerclass", readerclass);
+
+            try {
+                connection.Open();
+                sqlcommand.ExecuteNonQuery();
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
+        public void deleteBook(int id) {
+            string query = @"DELETE FROM Books WHERE book_id = @id";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+            sqlcommand.Parameters.AddWithValue("@id", id);
+
+            try {
+                connection.Open();
+                sqlcommand.ExecuteNonQuery();
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
+
+        public void setMember(string name, int age, string email, string contact, string readercatagory) {
             string query = @"INSERT INTO Member (full_name, age, contact, email, reader_catagory)";
-            query += "VALUES (@name, @age, @contact, @email, @password, @readercatagory)";
+            query += "VALUES (@name, @age, @contact, @email, @readercatagory)";
             SqlCommand sqlcommand = new SqlCommand(query, connection);
 
             sqlcommand.Parameters.AddWithValue("@name", name);
@@ -155,9 +262,73 @@ namespace Library_Management
                 int rowseffected = sqlcommand.ExecuteNonQuery();
                 if (rowseffected > 0) MessageBox.Show("Success");
                 else MessageBox.Show("Failed");
-            } catch (SqlException se) {
+            }
+            catch (SqlException se) {
                 MessageBox.Show(se.ToString());
-            } finally {
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
+        public DataTable getMember() {
+            string query = @"SELECT * FROM Member";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+            DataTable datatable = new DataTable();
+            try {
+                connection.Open();
+                SqlDataAdapter sqldataadapter = new SqlDataAdapter(sqlcommand);
+                sqldataadapter.Fill(datatable);
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+
+            return datatable;
+        }
+
+        public void updateMember(int id, string name, int age, string contact, string email) {
+            string readercatagory = "adult";
+            if (age < 18) readercatagory = "minor";
+
+            string query = @"UPDATE Member SET full_name = @name, age = @age, contact = @contact, email = @email, reader_catagory = @catagory WHERE Member_Id = @id";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+
+            sqlcommand.Parameters.AddWithValue("@id", id);
+            sqlcommand.Parameters.AddWithValue("@name", name);
+            sqlcommand.Parameters.AddWithValue("@age", age);
+            sqlcommand.Parameters.AddWithValue("@contact", contact);
+            sqlcommand.Parameters.AddWithValue("@email", email);
+            sqlcommand.Parameters.AddWithValue("@catagory", readercatagory);
+
+            try {
+                connection.Open();
+                sqlcommand.ExecuteNonQuery();
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
+                connection.Close();
+            }
+        }
+
+        public void deleteMember(int id) {
+            string query = @"DELETE FROM Member WHERE Member_Id = @id";
+            SqlCommand sqlcommand = new SqlCommand(query, connection);
+            sqlcommand.Parameters.AddWithValue("@id", id);
+
+            try {
+                connection.Open();
+                sqlcommand.ExecuteNonQuery();
+            }
+            catch (SqlException se) {
+                MessageBox.Show(se.ToString());
+            }
+            finally {
                 connection.Close();
             }
         }
